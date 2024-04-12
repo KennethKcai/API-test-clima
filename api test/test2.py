@@ -26,6 +26,7 @@ data = {
 
 response = requests.post(url, json=data, headers=headers)
 
+
 print(response.json())
 
 # python "/Users/akacoral/Documents/GitHub/API-test-clima/api test/test.py"

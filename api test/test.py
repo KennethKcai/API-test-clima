@@ -1,14 +1,8 @@
 import requests
 import pandas as pd
 import json
+import tiktoken
 
-# file_path = '/Users/akacoral/Documents/GitHub/API-test-clima/api test/df_Red Bluff Muni AP_USA_Clima_SIunit.csv'
-# df = pd.read_csv(file_path, nrows=10)
-# data_list = df.to_dict(orient='records')
-# json_data = json.dumps(data_list)
-
-
-# print(data_list)
 
 with open('/Users/akacoral/Documents/GitHub/API-test-clima/api test/data.json', 'r', encoding='utf-8') as file:
     json_data = json.load(file)

@@ -16,20 +16,25 @@ rounded_data_base = [[round(num, 1) for num in sublist] for sublist in base_valu
 # print(rounded_data_y[0])
 # print(rounded_data_base[0])
 
-AD_80_y = rounded_data_y[0]
-AD_80_base = rounded_data_base[0]
+def generate_range_list(y_values, base_values):
+    lst_range_min = []
+    lst_range_max = []
 
-lst_range_80_min = []
-lst_range_80_max = []
+    for i in range(len(base_values)):
+        range_min = base_values[i]
+        lst_range_min.append(range_min)
+        range_max = base_values[i] + y_values[i]
+        lst_range_max.append(range_max)
+    
+    lst_range = []
+    for i in range(len(lst_range_min)):
+        range_item = [lst_range_min[i], lst_range_max[i]]
+        lst_range.append(range_item)
+    
+    return lst_range
 
-for i in range(len(AD_80_base)):
-    range_80_min = AD_80_base[i]
-    lst_range_80_min.append(range_80_min)
-    range_80_max = AD_80_base[i] + AD_80_y[i]
-    lst_range_80_max.append(range_80_max)
-
-print(lst_range_80_min)
-print(lst_range_80_max)
+lst_range_80 = generate_range_list(rounded_data_y[0], rounded_data_base[0])
+lst_range_90 = generate_range_list(rounded_data_y[1], rounded_data_base[1])
 
 # url = "https://api.zerowidth.ai/beta/process/XmZlDB2W1HFIzS7fmawI/fI8ys5r4pBiTnLdlQJdS"
 # headers = {

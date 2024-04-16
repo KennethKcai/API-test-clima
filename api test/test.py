@@ -8,8 +8,14 @@ with open('/Users/akacoral/Documents/GitHub/API-test-clima/api test/data.json', 
     json_data = json.load(file)
 
 y_values = [item['y'] for item in json_data if 'y' in item]
-rounded_data = [[round(num, 1) for num in sublist] for sublist in y_values]
-print(rounded_data)
+base_values = [item['base'] for item in json_data if 'base' in item]
+
+rounded_data_y = [[round(num, 1) for num in sublist] for sublist in y_values]
+rounded_data_base = [[round(num, 1) for num in sublist] for sublist in base_values]
+
+print(rounded_data_y[0])
+print(rounded_data_base[0])
+
 
 # url = "https://api.zerowidth.ai/beta/process/XmZlDB2W1HFIzS7fmawI/fI8ys5r4pBiTnLdlQJdS"
 # headers = {

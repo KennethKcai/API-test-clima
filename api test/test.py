@@ -36,23 +36,35 @@ def generate_range_list(y_values, base_values):
 lst_range_80 = generate_range_list(rounded_data_y[0], rounded_data_base[0])
 lst_range_90 = generate_range_list(rounded_data_y[1], rounded_data_base[1])
 
-# url = "https://api.zerowidth.ai/beta/process/XmZlDB2W1HFIzS7fmawI/fI8ys5r4pBiTnLdlQJdS"
-# headers = {
-#     "Authorization": "Bearer sk0w-e1b943077ab9f86493693118eca0dfeb", 
-#     "Content-Type": "application/json"
-# }
+temp_data = rounded_data_y[3]
+tem_range = rounded_data_y[2]
 
-# data = {
-#     "data": {
-#         "variables": {
-#             "DATA": json_data
-#         }
-#     }
-# }
+data_with_description = {
+    "ASHRAE adaptive comfort (80%) for 80 percentile": lst_range_80,
+    "ASHRAE adaptive comfort (80%) for 90 percentile": lst_range_90,
+    "365 daily temperature average": temp_data,
+    "365 daily temperature range": tem_range
+}
 
-# response = requests.post(url, json=data, headers=headers)
+json_data = json.dumps(data_with_description, indent=4)
 
-# print(response.json())
+url = "https://api.zerowidth.ai/beta/process/XmZlDB2W1HFIzS7fmawI/fI8ys5r4pBiTnLdlQJdS"
+headers = {
+    "Authorization": "Bearer sk0w-e1b943077ab9f86493693118eca0dfeb", 
+    "Content-Type": "application/json"
+}
+
+data = {
+    "data": {
+        "variables": {
+            "DATA": json_data
+        }
+    }
+}
+
+response = requests.post(url, json=data, headers=headers)
+
+print(response.json())
 
 # python "/Users/akacoral/Documents/GitHub/API-test-clima/api test/test.py"
 

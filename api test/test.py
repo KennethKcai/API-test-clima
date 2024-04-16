@@ -40,10 +40,10 @@ temp_data = rounded_data_y[3]
 tem_range = rounded_data_y[2]
 
 data_with_description = {
-    "ASHRAE adaptive comfort (80%) for 80 percentile": lst_range_80,
-    "ASHRAE adaptive comfort (80%) for 90 percentile": lst_range_90,
-    "365 daily temperature average": temp_data,
-    "365 daily temperature range": tem_range
+    "ASHRAE adaptive comfort (80%) for 80 percentile from the first date to the last date of the year": lst_range_80,
+    "ASHRAE adaptive comfort (80%) for 90 percentile from the first date to the last date of the year": lst_range_90,
+    "daily temperature average from the first date to the last date of the year": temp_data,
+    "daily temperature range from the first date to the last date of the year": tem_range
 }
 
 json_data = json.dumps(data_with_description, indent=4)

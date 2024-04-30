@@ -4,17 +4,26 @@ import json
 
 
 
-with open('/Users/akacoral/Documents/GitHub/API-test-clima/api test/data.json', 'r', encoding='utf-8') as file:
+with open('/Users/akacoral/Documents/GitHub/API-test-clima/api test/rh_yearly_data.json', 'r', encoding='utf-8') as file:
     json_data = json.load(file)
 
 y_values = [item['y'] for item in json_data if 'y' in item]
 base_values = [item['base'] for item in json_data if 'base' in item]
+ave_values = [item['customdata'] for item in json_data if 'customdata' in item]
+
+print(y_values)
 
 rounded_data_y = [[round(num, 1) for num in sublist] for sublist in y_values]
 rounded_data_base = [[round(num, 1) for num in sublist] for sublist in base_values]
+rounded_data_ave = [
+    [round(num, 1) if isinstance(num, (int, float)) else num for num in sublist] 
+    for sublist in ave_values
+]
 
-# print(rounded_data_y[0])
-# print(rounded_data_base[0])
+
+print(rounded_data_y[0])
+print(rounded_data_base[0])
+print(rounded_data_ave[0])
 
 def generate_range_list(y_values, base_values):
     lst_range_min = []
@@ -46,22 +55,22 @@ data_with_description = {
     "daily temperature range from the first date to the last date of the year": tem_range
 }
 
-json_data = json.dumps(data_with_description, indent=4)
+# json_data = json.dumps(data_with_description, indent=4)
 
-url = "https://api.zerowidth.ai/beta/process/dUakZrqR6iPgiJXslVOE/keL4947TSV17cRgaA1KM"
-headers = {
-    "Authorization": "Bearer sk0w-d4b90953c5f969ae83fd15bbe10b3b53", 
-    "Content-Type": "application/json"
-}
+# url = "https://api.zerowidth.ai/beta/process/dUakZrqR6iPgiJXslVOE/keL4947TSV17cRgaA1KM"
+# headers = {
+#     "Authorization": "Bearer sk0w-d4b90953c5f969ae83fd15bbe10b3b53", 
+#     "Content-Type": "application/json"
+# }
 
-data = {
-    "data": {
-        "variables": {
-            "DATA": json_data,
-            "MONTH": "FEB"
-        }
-    }
-}
+# data = {
+#     "data": {
+#         "variables": {
+#             "DATA": json_data,
+#             "MONTH": "FEB"
+#         }
+#     }
+# }
 
 response = requests.post(url, json=data, headers=headers)
 

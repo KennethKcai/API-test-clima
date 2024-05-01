@@ -11,18 +11,14 @@ y_values = [item['y'] for item in json_data if 'y' in item]
 base_values = [item['base'] for item in json_data if 'base' in item]
 ave_values = [item['customdata'] for item in json_data if 'customdata' in item]
 
-print(y_values)
 
 rounded_data_y = [[round(num, 1) for num in sublist] for sublist in y_values]
 rounded_data_base = [[round(num, 1) for num in sublist] for sublist in base_values]
 rounded_data_ave = [
-    [round(num, 1) if isinstance(num, (int, float)) else num for num in sublist] 
-    for sublist in ave_values
-]
+        [round(sublist[0], 1), sublist[1], sublist[2]] if isinstance(sublist[0], (int, float)) else sublist
+        for sublist in ave_values
+    ]
 
-
-print(rounded_data_y[0])
-print(rounded_data_base[0])
 print(rounded_data_ave[0])
 
 def generate_range_list(y_values, base_values):
@@ -42,18 +38,18 @@ def generate_range_list(y_values, base_values):
     
     return lst_range
 
-lst_range_80 = generate_range_list(rounded_data_y[0], rounded_data_base[0])
-lst_range_90 = generate_range_list(rounded_data_y[1], rounded_data_base[1])
+rh_range = generate_range_list(rounded_data_y[1], rounded_data_base[1])
+rh_band = generate_range_list(rounded_data_y[0], rounded_data_base[0])
 
-temp_data = rounded_data_y[3]
-tem_range = rounded_data_y[2]
+rh_ave = rounded_data_ave[0]
 
 data_with_description = {
-    "ASHRAE adaptive comfort (80%) for 80 percentile from the first date to the last date of the year": lst_range_80,
-    "ASHRAE adaptive comfort (80%) for 90 percentile from the first date to the last date of the year": lst_range_90,
-    "daily temperature average from the first date to the last date of the year": temp_data,
-    "daily temperature range from the first date to the last date of the year": tem_range
+    "humidity comfort band(%) from the first date to the last date of the year": rh_band,
+    "Relative humidity Range(%) from the first date to the last date of the year": rh_range,
+    "Average Relative humidity from the first date to the last date of the year": rh_ave
 }
+
+print(data_with_description)
 
 # json_data = json.dumps(data_with_description, indent=4)
 

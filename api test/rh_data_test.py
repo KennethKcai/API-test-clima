@@ -45,26 +45,24 @@ data_with_description = {
     "Average Relative humidity from the first date to the last date of the year": rh_ave
 }
 
-print(data_with_description)
+json_data = json.dumps(data_with_description, indent=4)
 
-# json_data = json.dumps(data_with_description, indent=4)
+url = "https://api.zerowidth.ai/beta/process/XmZlDB2W1HFIzS7fmawI/cVpYPLjRmxtZoHbHp24H"
+headers = {
+    "Authorization": "Bearer sk0w-e1b943077ab9f86493693118eca0dfeb", 
+    "Content-Type": "application/json"
+}
 
-# url = "https://api.zerowidth.ai/beta/process/dUakZrqR6iPgiJXslVOE/keL4947TSV17cRgaA1KM"
-# headers = {
-#     "Authorization": "Bearer sk0w-d4b90953c5f969ae83fd15bbe10b3b53", 
-#     "Content-Type": "application/json"
-# }
-
-# data = {
-#     "data": {
-#         "variables": {
-#             "DATA": json_data,
-#         }
-#     }
-# }
+data = {
+    "data": {
+        "variables": {
+            "DATA": json_data,
+        }
+    }
+}
 
 response = requests.post(url, json=data, headers=headers)
 
 print(response.json())
 
-# python "/Users/akacoral/Documents/GitHub/API-test-clima/api test/month_test.py"
+# python "/Users/akacoral/Documents/GitHub/API-test-clima/api test/rh_data_test.py"

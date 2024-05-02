@@ -14,12 +14,8 @@ ave_values = [item['customdata'] for item in json_data if 'customdata' in item]
 
 rounded_data_y = [[round(num, 1) for num in sublist] for sublist in y_values]
 rounded_data_base = [[round(num, 1) for num in sublist] for sublist in base_values]
-rounded_data_ave = [
-        [round(sublist[0], 1), sublist[1], sublist[2]] if isinstance(sublist[0], (int, float)) else sublist
-        for sublist in ave_values
-    ]
+rounded_data_ave = [[[round(num[0], 1)] + num[1:] for num in sublist] for sublist in ave_values]
 
-print(rounded_data_ave[0])
 
 def generate_range_list(y_values, base_values):
     lst_range_min = []
@@ -63,7 +59,6 @@ print(data_with_description)
 #     "data": {
 #         "variables": {
 #             "DATA": json_data,
-#             "MONTH": "FEB"
 #         }
 #     }
 # }
